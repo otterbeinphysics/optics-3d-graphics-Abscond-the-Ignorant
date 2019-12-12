@@ -153,7 +153,7 @@ class matrix2 extends Array {
   
   mult(b) {
  	if(b instanceof matrix2) {
- 		return multiply_square_matrices(this,b,mat2());
+ 		return multiply_square_matricies(this,b,mat2());
  	}
  	else if(b instanceof vector2) {
 		return multiply_square_matrix_times_vector(this,b, new vector2());
@@ -209,7 +209,7 @@ class matrix4 extends Array {
   
   mult(b) {
  	if(b instanceof matrix4) {
- 		return multiply_square_matrices(this,b,new matrix4());
+ 		return multiply_square_matricies(this,b,mat4());
  	}
  	else if(b instanceof vector4) {
 		return multiply_square_matrix_times_vector(this,b, new vector4());
@@ -221,6 +221,34 @@ class matrix4 extends Array {
   }
 }
 
+function rotationX(theta){
+	return mat4(
+		[1,		 			  0,			 		  0,	0],
+		[0, 	Math.cos(theta), 	   -Math.sin(theta), 	0],
+		[0,		Math.sin(theta),	    Math.cos(theta),	0],
+		[0,					  0,					  0,	1]
+	)
+}
+function rotationY(theta){
+	return mat4(
+		[Math.cos(theta), 		 0,		-Math.sin(theta), 	0],
+		[0, 	 				 1, 				  0,	0],
+		[Math.sin(theta),		 0,	  	Math.cos(theta), 	0],
+		[0,					  	 0,					  0,	1]
+	)
+}
+function rotationZ(theta){
+	return mat4(
+		[Math.cos(theta), 		-Math.sin(theta),	  0, 	0],
+		[Math.sin(theta), 	 	 Math.cos(theta),	  0,	0],
+		[0,		 								0,	  1, 	0],
+		[0,					  	 				0,	  0,	1]
+	)
+}
+
+function rollPitchYaw(theta, phi, delta){
+	return ( rotationZ(theta).mult(rotationX(phi)) ).mult(rotationZ(delta))
+}
 
 function test()
 {
@@ -234,4 +262,3 @@ function test()
 	console.log("d",d);
 	console.log("M times d",M.mult(d));
 }
-
