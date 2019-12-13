@@ -43,7 +43,6 @@ function multiply_scalar_times_vector(V,s,out)
 	return out;
 }
 
-
 function multiply_square_matricies(a,b,out)
 {
 	// assume square matrices.
@@ -100,20 +99,20 @@ function vec3(x,y,z) {
 	return new vector3(x,y,z);
 }
 
-class vector3 extends Array {
-  constructor(x,y,z) {
-    super(x||0,y||0,z||0);
-  }
-  x() { return this[0]; }
-  y() { return this[1]; }
-  z() { return this[2]; }
-  mult(b) { 
- 	if(typeof(b) == "number") {
- 		return multiply_scalar_times_vector(this,b,new vector3());
- 	}
- 	throw "Bad multiplication with matrix2";
-  }
-}
+	class vector3 extends Array {
+	constructor(x,y,z) {
+		super(x||0,y||0,z||0);
+	}
+	x() { return this[0]; }
+	y() { return this[1]; }
+	z() { return this[2]; }
+	mult(b) { 
+		if(typeof(b) == "number") {
+			return multiply_scalar_times_vector(this,b,new vector3());
+		}
+		throw "Bad multiplication with matrix2";
+	}
+	}
 
 
 function vec4(x,y,z,w) {
@@ -247,7 +246,7 @@ function rotationZ(theta){
 }
 
 function rollPitchYaw(theta, phi, delta){
-	return ( rotationZ(theta).mult(rotationX(phi)) ).mult(rotationZ(delta))
+	return ( rotationZ(theta).mult(rotationX(phi)) ).mult(rotationY(delta))
 }
 
 function test()

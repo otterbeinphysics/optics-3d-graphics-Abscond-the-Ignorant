@@ -348,7 +348,7 @@ function drawIndexBuffer(inList){
 
 function drawVertexBuffer(inList){
 	ctx.strokeStyle = "blue";
-	ctx.lineWidth = 2;  // thickish lines
+	ctx.lineWidth = 0.5;  // thickish lines
 	
 
 	MoveTo3d(inList[0]);
